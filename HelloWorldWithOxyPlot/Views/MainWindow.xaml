@@ -7,9 +7,10 @@
         xmlns:local="clr-namespace:HelloWorldWithOxyPlot"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <!--<Window.DataContext>
-        <local:MainWindow/>
-    </Window.DataContext>-->
+    <Window.DataContext>
+        <!--<local:MainWindow/>-->
+        <!--<local:MainWindowViewModel/>-->
+    </Window.DataContext>
     <Grid>
         <Button x:Name="HelloWorldButton" Content ="Click Me" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Height="50" Click="HelloWorldButton_Click"/>
         <!--<oxy:Plot Title="{Binding Title}">
