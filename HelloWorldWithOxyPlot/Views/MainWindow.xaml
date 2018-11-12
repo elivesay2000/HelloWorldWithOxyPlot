@@ -11,8 +11,12 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <Button x:Name="HelloWorldButton" Content ="Click Me" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Height="50" Click="HelloWorldButton_Click"/>
-        <oxy:Plot Title="{Binding Title}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="HelloWorldButton" Content ="Click Me" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Height="40" Click="HelloWorldButton_Click"/>
+        <oxy:Plot Title="{Binding Title}" Grid.Row="0">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
             </oxy:Plot.Series>
