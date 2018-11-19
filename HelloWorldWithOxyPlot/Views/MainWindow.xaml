@@ -17,8 +17,13 @@
         </Grid.RowDefinitions>
         <Button x:Name="HelloWorldButton" Content ="Click Me" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Height="40" Click="HelloWorldButton_Click"/>
         <oxy:Plot Title="{Binding Title}" Grid.Row="0">
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis Position="Left" Minimum="-2" Maximum="17" Title="The y-axis title" />
+                <oxy:LinearAxis Position="Bottom" Minimum="-20" Maximum="75" Title="The x-axis title" />
+            </oxy:Plot.Axes>
             <oxy:Plot.Series>
-                <oxy:LineSeries ItemsSource="{Binding Points}"/>
+                <oxy:LineSeries ItemsSource="{Binding Points_1}" Title="Points_1"/>
+                <oxy:LineSeries ItemsSource="{Binding Points_2}" Title="Points_2"/>
             </oxy:Plot.Series>
         </oxy:Plot>
     </Grid>

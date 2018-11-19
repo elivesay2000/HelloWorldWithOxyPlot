@@ -11,12 +11,13 @@ namespace HelloWorldWithOxyPlot
    public class MainWindowViewModel
    {
       public string Title { get; private set; }
-      public IList<DataPoint> Points { get; private set; }
+      public IList<DataPoint> Points_1 { get; private set; }
+      public IList<DataPoint> Points_2 { get; private set; }
 
       public MainWindowViewModel()
       {
-         this.Title = "Example 2";
-         this.Points = new List<DataPoint>
+         this.Title = "This is the title";
+         this.Points_1 = new List<DataPoint>
          {
             new DataPoint(0,4),
             new DataPoint(10,13),
@@ -24,6 +25,15 @@ namespace HelloWorldWithOxyPlot
             new DataPoint(30,16),
             new DataPoint(40,12),
             new DataPoint(50,12),
+         };
+         this.Points_2 = new List<DataPoint>
+         {
+            new DataPoint(0,1),
+            new DataPoint(10,2),
+            new DataPoint(20,3),
+            new DataPoint(30,4),
+            new DataPoint(40,5),
+            new DataPoint(50,6),
          };
 
 
