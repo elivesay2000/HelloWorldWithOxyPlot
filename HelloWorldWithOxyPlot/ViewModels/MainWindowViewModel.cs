@@ -19,7 +19,7 @@ namespace HelloWorldWithOxyPlot
          this.Title = "This is the title";
          this.Points_1 = new List<DataPoint>
          {
-            new DataPoint(0,4),
+            new DataPoint( 0, 4),
             new DataPoint(10,13),
             new DataPoint(20,15),
             new DataPoint(30,16),
@@ -28,12 +28,15 @@ namespace HelloWorldWithOxyPlot
          };
          this.Points_2 = new List<DataPoint>
          {
-            new DataPoint(0,1),
-            new DataPoint(10,2),
-            new DataPoint(20,3),
-            new DataPoint(30,4),
-            new DataPoint(40,5),
-            new DataPoint(50,6),
+            new DataPoint(- 5, 2),
+            new DataPoint(  0, 1),
+            new DataPoint( 10, 2),
+            new DataPoint( 20, 3),
+            new DataPoint( 30, 4),
+            new DataPoint( 40, 5),
+            new DataPoint( 50, 6),
+            new DataPoint( 60, 8),
+            new DataPoint( 70,12),
          };
 
 
