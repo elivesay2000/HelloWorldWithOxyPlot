@@ -4,18 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OxyPlot;
+using System.Windows.Input;
+using System.ComponentModel;
 
 //namespace HelloWorldWithOxyPlot.ViewModels
 namespace HelloWorldWithOxyPlot
 {
-   public class MainWindowViewModel
+   public class MainWindowViewModel : INotifyPropertyChanged
    {
-      public string Title { get; private set; }
+      public string           Title { get; private set; }
       public IList<DataPoint> Points_1 { get; private set; }
       public IList<DataPoint> Points_2 { get; private set; }
 
+      private ExampleCommand  exampleCommand;
+
+      public event PropertyChangedEventHandler PropertyChanged;
+      public void OnPropertyChanged(string propertyName)
+      {
+         if( PropertyChanged != null)
+         {
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+         }
+      }
+
+      public ICommand DoExampleCommand
+      {
+         get
+         {
+            return exampleCommand;
+         }
+      }
+
       public MainWindowViewModel()
       {
+         exampleCommand = new ExampleCommand(this);
+
          this.Title = "This is the title";
          this.Points_1 = new List<DataPoint>
          {
@@ -38,9 +61,37 @@ namespace HelloWorldWithOxyPlot
             new DataPoint( 60, 8),
             new DataPoint( 70,12),
          };
+      }
+      public void       AddPoints_to_1()
+      {
+         DataPoint p = this.Points_1.Last();
+         this.Points_1.Add(new DataPoint(p.X + 10, p.Y + 2));
 
-
+         OnPropertyChanged("Points_1");
       }
 
+   }
+   public class ExampleCommand : ICommand
+   {
+      private MainWindowViewModel      ViewModel;
+      public ExampleCommand(MainWindowViewModel vm)
+      {
+         ViewModel = vm;
+      }
+      public event EventHandler CanExecuteChanged;
+
+      public bool CanExecute(object parameter)
+      {
+         //throw new NotImplementedException();
+         return true;
+      }
+
+      public void Execute(object parameter)
+      {
+         //throw new NotImplementedException();
+         if (ViewModel == null ) return;
+
+         ViewModel.AddPoints_to_1();
+      }
    }
 }
