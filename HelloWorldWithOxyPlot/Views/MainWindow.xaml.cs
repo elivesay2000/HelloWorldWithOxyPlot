@@ -25,10 +25,5 @@ namespace HelloWorldWithOxyPlot
       {
          InitializeComponent();
       }
-
-      //private void HelloWorldButton_Click(object sender, RoutedEventArgs e)
-      //{
-      //   MessageBox.Show("Hello World");
-      //}
    }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +15,13 @@ namespace HelloWorldWithOxyPlot
       public IList<DataPoint> Points_1 { get; private set; }
       public IList<DataPoint> Points_2 { get; private set; }
 
-      private ExampleCommand  exampleCommand;
+      public int              TotalNumberOfPoints
+      {
+         get
+         {
+            return Points_1.Count + Points_2.Count;
+         }
+      }
 
       public event PropertyChangedEventHandler PropertyChanged;
       public void OnPropertyChanged(string propertyName)
@@ -27,18 +32,25 @@ namespace HelloWorldWithOxyPlot
          }
       }
 
-      public ICommand DoExampleCommand
+      private AddPointsCommand addCommandForPoints_1;
+      public ICommand AddCommandForPoints_1
       {
          get
          {
-            return exampleCommand;
+            return addCommandForPoints_1;
+         }
+      }
+      private AddPointsCommand addCommandForPoints_2;
+      public ICommand AddCommandForPoints_2
+      {
+         get
+         {
+            return addCommandForPoints_2;
          }
       }
 
       public MainWindowViewModel()
       {
-         exampleCommand = new ExampleCommand(this);
-
          this.Title = "This is the title";
          this.Points_1 = new List<DataPoint>
          {
@@ -61,37 +73,22 @@ namespace HelloWorldWithOxyPlot
             new DataPoint( 60, 8),
             new DataPoint( 70,12),
          };
+
+         // Commands
+         addCommandForPoints_1 = new AddPointsCommand(this, Points_1, "Points_1");
+         addCommandForPoints_2 = new AddPointsCommand(this, Points_2, "Points_2");
+
       }
-      public void       AddPoints_to_1()
+      public void       AddPoints(IList<DataPoint> points, string whichPoints)
       {
-         DataPoint p = this.Points_1.Last();
-         this.Points_1.Add(new DataPoint(p.X + 10, p.Y + 2));
+         if (points == null) return;
 
-         OnPropertyChanged("Points_1");
+         DataPoint p = points.Last();
+         points.Add(new DataPoint(p.X + 3, p.Y + 1));
+
+         OnPropertyChanged(whichPoints);
+         OnPropertyChanged("TotalNumberOfPoints");
       }
 
-   }
-   public class ExampleCommand : ICommand
-   {
-      private MainWindowViewModel      ViewModel;
-      public ExampleCommand(MainWindowViewModel vm)
-      {
-         ViewModel = vm;
-      }
-      public event EventHandler CanExecuteChanged;
-
-      public bool CanExecute(object parameter)
-      {
-         //throw new NotImplementedException();
-         return true;
-      }
-
-      public void Execute(object parameter)
-      {
-         //throw new NotImplementedException();
-         if (ViewModel == null ) return;
-
-         ViewModel.AddPoints_to_1();
-      }
    }
 }
